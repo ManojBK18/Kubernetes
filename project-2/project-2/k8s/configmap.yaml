@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+  namespace: exam-app
+data:
+  # Shared
+  DB_HOST:             "postgres-svc"
+  DB_PORT:             "5432"
+  DB_USER:             "postgres"
+  DEBUG:               "False"
+
+  # Per-service DB names
+  AUTH_DB_NAME:        "auth_db"
+  EXAM_DB_NAME:        "exam_db"
+  RESULT_DB_NAME:      "result_db"
+
+  # Inter-service URLs (k8s DNS)
+  RESULT_SERVICE_URL:  "http://result-service-svc:8000"

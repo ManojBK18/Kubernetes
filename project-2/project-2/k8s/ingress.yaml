@@ -1,0 +1,46 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: exam-app-ingress
+  namespace: exam-app
+spec:
+  ingressClassName: nginx
+  rules:
+    - http:
+        paths:
+          # Auth service
+          - path: /api/auth
+            pathType: Prefix
+            backend:
+              service:
+                name: auth-service-svc
+                port:
+                  number: 8000
+
+          # Exam service
+          - path: /api/exams
+            pathType: Prefix
+            backend:
+              service:
+                name: exam-service-svc
+                port:
+                  number: 8000
+
+          # Result service
+          - path: /api/results
+            pathType: Prefix
+            backend:
+              service:
+                name: result-service-svc
+                port:
+                  number: 8000
+
+          # Frontend (catch-all)
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: frontend-svc
+                port:
+                  number: 80
+

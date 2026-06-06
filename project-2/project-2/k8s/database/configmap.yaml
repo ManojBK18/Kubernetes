@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-init
+  namespace: exam-app
+data:
+  init.sql: |
+    CREATE DATABASE auth_db;
+    CREATE DATABASE exam_db;
+    CREATE DATABASE result_db;
+
